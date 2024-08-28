@@ -14,7 +14,7 @@ class PBIFormulaFixer {
   private firstDataRow: number;
   private lastDataRow: number;
 
-  public constructor(wrkbook: ExcelScript.Workbook, wrksheet: string = "Formatieberekening") {
+  public constructor(wrkbook: ExcelScript.Workbook, wrksheet: string) {
     // Init Object
     this._workbook = wrkbook;
     this.sheetname = wrksheet;
@@ -73,7 +73,8 @@ class PBIFormulaFixer {
     let maxCol = 5;
     for (let row = 1; row <= maxRow; row++) {
       for (let col = 1; col <= maxCol; col++) {
-        if (this.sheetvalues[row - 1][col - 1] == "College") {
+        // Add first important cell value below:
+        if (this.sheetvalues[row - 1][col - 1] == "FIRST_CELL_CONTENT") {
           this.firstDataRow = this._worksheet.getCell(row + 2, col).getRowIndex();
           return;
         }
